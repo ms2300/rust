@@ -674,7 +674,7 @@ fn check_existential_types<'a, 'fcx, 'gcx, 'tcx>(
                         }
                     }
                 } // if is_named_existential_type
-            } // if let Opaque 
+            } // if let Opaque
             ty
         },
         reg_op: |reg| reg,

@@ -113,7 +113,9 @@ impl<'a, 'gcx, 'tcx> InferCtxt<'a, 'gcx, 'tcx> {
         value: &T,
     ) -> InferOk<'tcx, (T, OpaqueTypeMap<'tcx>)> {
         debug!(
-            "instantiate_opaque_types(value={:?}, parent_def_id={:?}, body_id={:?}, param_env={:?})",
+            "instantiate_opaque_types(value={:?},
+            parent_def_id={:?}, body_id={:?},
+            param_env={:?})",
             value, parent_def_id, body_id, param_env,
         );
         let mut instantiator = Instantiator {
@@ -404,7 +406,7 @@ impl<'a, 'gcx, 'tcx> InferCtxt<'a, 'gcx, 'tcx> {
         }
     }
 
-    /// Given the fully resolved, instantiated type for an opaque 
+    /// Given the fully resolved, instantiated type for an opaque
     /// type, i.e., the value of an inference variable like C1 or C2
     /// (*), computes the "definition type" for an abstract type
     /// definition -- that is, the inferred value of `Foo1<'x>` or
@@ -836,7 +838,8 @@ impl<'a, 'gcx, 'tcx> Instantiator<'a, 'gcx, 'tcx> {
 /// ```
 ///
 /// Here, `def_id` will be the `DefId` of the existential type `Baz`.
-/// `opaque_node_id` is the `NodeId` of the reference to Baz -- so either the return type of f1 or f2.
+/// `opaque_node_id` is the `NodeId` of the reference to Baz --
+///  so either the return type of f1 or f2.
 /// We will return true if the reference is within the same module as the existential type
 /// So true for f1, false for f2.
 pub fn may_define_existential_type(

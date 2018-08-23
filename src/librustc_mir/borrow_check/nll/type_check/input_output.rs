@@ -117,7 +117,8 @@ impl<'a, 'gcx, 'tcx> TypeChecker<'a, 'gcx, 'tcx> {
                                 "equate_inputs_and_outputs: concrete_ty={:?}",
                                 opaque_decl.concrete_ty
                             );
-                            debug!("equate_inputs_and_outputs: opaque_defn_ty={:?}", opaque_defn_ty);
+                            debug!("equate_inputs_and_outputs: opaque_defn_ty={:?}",
+                                   opaque_defn_ty);
                             obligations.add(
                                 infcx
                                     .at(&ObligationCause::dummy(), param_env)
