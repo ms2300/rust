@@ -493,7 +493,7 @@ impl<'cx, 'gcx, 'tcx> WritebackCx<'cx, 'gcx, 'tcx> {
                 })
             };
 
-            if let ty::Anon(defin_ty_def_id, _substs) = definition_ty.sty {
+            if let ty::Opaque(defin_ty_def_id, _substs) = definition_ty.sty {
                 if def_id == defin_ty_def_id {
                     // Concrete type resolved to the existential type itself
                     // Force a cycle error
