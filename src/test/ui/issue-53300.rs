@@ -1,4 +1,4 @@
-// Copyright 2016 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012-2014 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,9 +8,15 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-struct Foo<T> { x: T }
-struct Bar { x: Foo }
-                //~^ ERROR wrong number of type arguments: expected 1, found 0 [E0243]
+// issue 53300
+
+pub trait A {
+    fn add(&self, b: i32) -> i32;
+}
+
+fn addition() -> Wrapper<impl A> {}
+//~^ ERROR cannot find type `Wrapper` in this scope [E0412]
 
 fn main() {
+    let res = addition();
 }

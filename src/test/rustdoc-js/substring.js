@@ -1,4 +1,4 @@
-// Copyright 2016 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2018 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,8 +8,13 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-fn foo<T, U>() {}
+// exact-check
 
-fn main() {
-    foo::<f64>(); //~ ERROR wrong number of type arguments: expected 2, found 1 [E0089]
-}
+const QUERY = 'waker_from';
+
+const EXPECTED = {
+    'others': [
+        { 'path': 'std::task', 'name': 'local_waker_from_nonlocal' },
+        { 'path': 'alloc::task', 'name': 'local_waker_from_nonlocal' },
+    ],
+};

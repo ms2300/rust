@@ -1,4 +1,4 @@
-// Copyright 2016 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2018 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,8 +8,17 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-fn foo<'a: 'b, 'b: 'a>() {}
+#![crate_type = "lib"]
 
-fn main() {
-    foo::<'static>(); //~ ERROR wrong number of lifetime arguments: expected 2, found 1 [E0090]
+pub fn bar<P>( // Error won't happen if "bar" is not generic
+    _baz: P,
+) {
+    hide_foo()();
+}
+
+fn hide_foo() -> impl Fn() { // Error won't happen if "iterate" hasn't impl Trait or has generics
+    foo
+}
+
+fn foo() { // Error won't happen if "foo" isn't used in "iterate" or has generics
 }
